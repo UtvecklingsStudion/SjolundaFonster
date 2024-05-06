@@ -1,0 +1,10 @@
+﻿@using Microsoft.EntityFrameworkCore
+@using SjolundaFonster.Data.Models
+@inject IDbContextFactory<SjolundaFonsterDbContext> ContextFactory
+
+<div class="color-card-container" @onclick="OnClickCallback">
+    <div class="color-card" style="background-color: @CardColor.Code"</div>
+    <div class="color-card-text ">
+        @CardColor.Name
+    </div>
+</div>

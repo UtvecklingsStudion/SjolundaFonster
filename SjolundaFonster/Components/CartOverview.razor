@@ -1,0 +1,87 @@
+﻿@using SjolundaFonster.Data.Models
+@using SjolundaFonster.Services
+@using Microsoft.EntityFrameworkCore
+@inject IDbContextFactory<SjolundaFonsterDbContext> ContextFactory
+@inject SjolundaFonster.Services.CartService CartService
+@implements IDisposable;
+
+     <div id="cart-shadow" class="cart-overview-shadow-background">
+        <div id="autoWidth" class="cart-overview">
+            <div class="overview-header">
+                <span class="overview-header-text">Varukorg</span>
+                <button class="cart-closing-button" onclick="closeOverview()">x</button>
+            </div>
+
+            <div class="cart-content">
+                @if (Sum == 0)
+                {
+                   <span>Du har inga varor i kundkorgen.</span>
+                }
+                @if (CartItems is not null)
+                {
+                    @foreach (var item in CartItems)
+                    {
+                        if(item.Quantity != 0)
+                        {
+                            <CartCard window="item"></CartCard>
+                        }
+                    
+                    }
+                }
+            </div>
+        @if(Sum != 0)
+        {
+            
+            <div class="cart-footer">
+                <div class="cart-overview-sum">
+                    <span class="cart-overview-sum-title">Summa varor:</span>
+                    <div class="cart-overview-sum-value">@Sum kr</div>
+                </div>
+          
+                <div>
+                    <button class="cart-overview-button">Till kassan</button>
+                </div>
+               
+            </div>
+        }
+        </div>
+     </div>
+ 
+     <style>
+
+     </style>
+
+     @code {
+    private List<Window>? CartItems;
+    private int Sum { get; set; }
+
+    [Parameter]
+    public EventCallback OnClick { get; set; }
+
+    protected override void OnInitialized()
+    {
+        CartItems = CartService.GetCartItems();
+        UpdateCart();
+        CartService.OnChange += UpdateCart;
+    }
+
+    private void UpdateCart()
+    {
+        CartItems = CartService.GetCartItems();
+        Sum = CartService.GetCartSum();
+        StateHasChanged();
+    }
+
+    public void Dispose()
+    {
+        CartService.OnChange -= UpdateCart;
+    }
+    }
+     
+     <script>
+    function closeOverview() {
+        document.getElementById("autoWidth").style.right = "-500px";
+        document.getElementById("cart-shadow").style.height = "0vh";
+        document.getElementById("cart-shadow").style.width = "0vw";
+    }
+     </script>

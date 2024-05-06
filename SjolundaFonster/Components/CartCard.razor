@@ -1,0 +1,37 @@
+﻿@using SjolundaFonster.Data.Models
+@using SjolundaFonster.Services
+@inject SjolundaFonster.Services.CartService CartService
+
+<div class="cart-card-container">
+    <div class="cart-card-icon">
+        <img src="/images/@(window.Model.Image).png" />
+    </div>
+    <div class="cart-card-content">
+        <div class="cart-card-header">Anno</div>
+        <div class="cart-card-text1">800</div>
+        <div class="cart-card-text2"></div>
+        <div class="cart-card-button-container">
+            <div class="cart-card-price">@(window.UnitPrice) kr</div>
+            <div class="cart-card-quantity">
+                <QuantitySelect Value="@window.Quantity" Border="false" ValueChanged="UpdateQuantity"></QuantitySelect>
+            </div>
+            <button @onclick="() => CartService.DeleteWindowFromCart(window)" class="cart-card-delete">
+                <img src="/images/icons8-delete-24.png" />
+            </button>
+        </div>
+    </div>
+</div>
+
+@code {
+    [Parameter]
+    public Window window { get; set; }
+
+    [Parameter]
+    public EventCallback<int> value { get; set; }
+
+    private async Task UpdateQuantity(int newValue)
+    {
+        window.Quantity = newValue;
+        CartService.NotifyCartUpdated();
+    }
+}

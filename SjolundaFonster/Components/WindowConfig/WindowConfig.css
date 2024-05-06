@@ -1,0 +1,27 @@
+﻿body {
+}
+
+.window-frame {
+    display: grid;
+    grid-template-columns: auto auto;
+    gap: 10px;
+    background-color: var(--window-color);
+    border: 1px solid black;
+    padding: 24px;
+    height: calc(var(--window-height) * 0.5px);
+    width: calc(var(--window-width) * 0.5px);
+}
+
+@media (max-width: 768px) {
+    .window-frame {
+        display: grid;
+        grid-template-columns: auto auto;
+        gap: 10px;
+        background-color: var(--window-color);
+        border: 1px solid black;
+        padding: 24px;
+        height: calc(var(--window-height) * 0.5px);
+        width: calc(var(--window-width) * 0.5px);
+    }
+
+}

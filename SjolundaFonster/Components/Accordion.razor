@@ -1,0 +1,22 @@
+﻿<div class="accordion">
+    <div class="accordion-label">
+        @Label
+    </div>
+    <div class="accordion-frame">
+        <div class="accordion-header">
+            <div class="accordion-header-text" 
+                 style="display: @(IsExpanded ? "none" : "flex")">
+                @Header
+            </div>
+            <div class="accordion-symbol" @onclick="ToggleAccordion">
+                <img src="images/angle-down.png" class="@((IsExpanded ? "expanded" : ""))" />
+            </div>
+        </div>
+
+        <div class="accordion-expanded" style="display: @(IsExpanded ? "block" : "none")">
+            <div>
+                @ChildContent
+            </div>
+        </div>
+    </div>
+</div>

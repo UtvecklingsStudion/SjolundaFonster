@@ -1,0 +1,57 @@
+﻿@page "/"
+@using SjolundaFonster.Components
+@using SjolundaFonster.Data.Models
+@using SjolundaFonster.Services
+@using Microsoft.EntityFrameworkCore
+@inject IDbContextFactory<SjolundaFonsterDbContext> ContextFactory
+@inject SjolundaFonster.Services.CartService CartService
+<head>
+    <link rel="stylesheet" href="index.razor.css" />
+</head>
+
+
+@if (Models is not null && Colors is not null && Window?.Color?.Code is not null && Window?.Width is not null && Window?.Height is not null && Window?.Model.Id is not null)
+{
+
+    <div class="layout-container">
+        <div class ="layout-container-config">
+            <div class="layout-config">
+                <WindowConfig Height="@Window.Height" Width="@Window.Width" Color="@Window.Color.Code" ModelId="@Window.Model.Id" />
+            </div>
+        </div>
+      
+        <div>
+            <div class="layout-container-select">
+                <EditForm Model="@Window" >
+                    <DataAnnotationsValidator></DataAnnotationsValidator>
+                    <Accordion Label="Kulör" Header="@Window.Color.Name">
+                        @foreach (var color in Colors)
+                        {
+                            <ColorCard CardColor="color" OnClickCallback="() => HandleColorUpdate(color)"/>
+                        }
+                    </Accordion>
+                    <Accordion Label="Modell" Header="@Window.Model.Name">
+                        @foreach (var model in Models)
+                        {
+                            <ModelCard CardModel="model" OnClickCallback="() => HandleModelUpdate(model)"/>
+                        }
+                    </Accordion>
+
+                    <div>
+                        <InputNumber @bind-Value="Window.Width"></InputNumber>
+                        <ValidationMessage For="@(() => Window.Width)" />
+                        <InputNumber @bind-Value="Window.Height"></InputNumber>
+                        <ValidationMessage For="@(() => Window.Height)"> </ValidationMessage>
+                    </div>
+                    <p>pris: @Window.UnitPrice</p>
+                    <div class="add-to-cart-container">
+                        <QuantitySelect Value="Window.Quantity" ValueChanged="UpdateQuantity"></QuantitySelect>
+                        <button class="button-add-to-cart" onclick=@AddToCart>Lägg i varukorg</button>
+                    </div>
+                </EditForm>
+            </div>
+        </div>
+    </div>
+
+
+}

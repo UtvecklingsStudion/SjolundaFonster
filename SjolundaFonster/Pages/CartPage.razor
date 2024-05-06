@@ -1,0 +1,30 @@
+﻿@page "/cart"
+@using SjolundaFonster.Data.Models
+@using SjolundaFonster.Services
+@using Microsoft.EntityFrameworkCore
+@inject IDbContextFactory<SjolundaFonsterDbContext> ContextFactory
+@inject SjolundaFonster.Services.CartService Cartservice
+<head>
+    <link rel="stylesheet" href="cart.razor.css" />
+</head>
+<h3>Cart</h3>
+@if (CartItems is not null)
+{
+    @foreach (var item in CartItems)
+    {
+        <p>@item.Model.Name @item.Color.Name @item.Width @item.Height @item.UnitPrice kr @item.Quantity st</p>
+
+    }
+
+}
+
+
+@code {
+
+    private List<Window> CartItems;
+
+    protected override async Task OnInitializedAsync()
+    {
+        CartItems =  Cartservice.GetCartItems();  
+    }
+}

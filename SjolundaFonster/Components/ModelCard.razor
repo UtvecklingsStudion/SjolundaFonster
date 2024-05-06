@@ -1,0 +1,23 @@
+﻿@using Microsoft.EntityFrameworkCore
+@using SjolundaFonster.Data.Models
+@inject IDbContextFactory<SjolundaFonsterDbContext> ContextFactory
+
+<div class="model-card-container" @onclick="OnClickCallback">
+    <div>
+        <img class="model-card-image" src="images/@(CardModel.Image).png" />
+    </div>
+    <div class="model-card-text ">
+        @CardModel.Name
+    </div>
+</div>
+
+
+@code {
+
+    [Parameter]
+    public Model? CardModel { get; set; }
+
+    [Parameter]
+    public EventCallback<MouseEventArgs> OnClickCallback { get; set; }
+
+}

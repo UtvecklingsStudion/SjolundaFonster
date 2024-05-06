@@ -1,0 +1,79 @@
+﻿
+<div class="@($"quantity-selector {(Border ? "with-border" : "")}")">
+    <button class="quantity-button" @onclick="Decrease">-</button>
+    <InputNumber @bind-Value="Value" class="quantity-value"></InputNumber>
+    <button class="quantity-button" @onclick="Increase">+</button>
+</div>
+
+@code {
+    [Parameter]
+    public int Value { get; set; }
+
+    [Parameter]
+    public bool Border { get; set; } = true;
+
+    [Parameter]
+    public EventCallback<int> ValueChanged { get; set; }
+
+    private async Task Increase()
+    {
+        Value++;
+        await ValueChanged.InvokeAsync(Value);
+    }
+
+    private async Task Decrease()
+    {
+        if (Value >= 1)
+        {
+            Value--;
+            await ValueChanged.InvokeAsync(Value);
+            
+        }
+    }
+
+}
+
+<style>
+    .quantity-selector {
+        height: 40px;
+        width: 100px;
+        display: flex;
+        align-items: center;
+    }
+
+    .with-border {
+        border: 1px solid black;
+    }
+
+    .quantity-value {
+        width: 20px;
+        flex-grow: 1;
+        text-align: center;
+        border: none;
+        outline: none;
+    }
+
+    .quantity-button {
+        width: 30px;
+        height: 100%;
+        border: none;
+        background-color: white;
+        font-size: 24px;
+        text-align: center;
+    }
+
+    .quantity-value::-webkit-inner-spin-button,
+    .quantity-value::-webkit-outer-spin-button {
+        -webkit-appearance: none;
+        margin: 0;
+    }
+
+    .quantity-value:focus {
+        border: none;
+    }
+
+    .valid.modified:not([type=checkbox]) {
+        outline: none;
+    }
+
+</style>

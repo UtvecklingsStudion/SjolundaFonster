@@ -1,0 +1,34 @@
+﻿@using SjolundaFonster.Components
+<div class="header">
+    <div></div>
+    <div class="header-logo">Sjölunda Fönster</div>
+    <div class="header-cart" >
+     <Cart></Cart>
+    </div>
+</div>
+
+@code {
+    private int currentCount;
+
+    private void SetCurrentCount(int value)
+    {
+        currentCount = value;
+    }
+    
+}
+<style>
+    .header {
+        display: flex;
+        height: 150px;
+        width: 100vw;
+
+    }
+    .header-logo {
+        flex-grow: 1;
+        text-align: center;
+        align-self: center;
+        font-size: 40px;
+
+    }
+
+</style>

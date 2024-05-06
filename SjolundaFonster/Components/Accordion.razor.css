@@ -1,0 +1,52 @@
+﻿body {
+}
+.accordion {
+    display: block;
+    padding-bottom: 20px;
+}
+
+.accordion-label {
+    margin-bottom: 0;
+    font-size: 10px;
+}
+
+.accordion-frame {
+    border: 1px solid black;
+}
+
+.accordion-header {
+    display: flex;
+    height: 100%;
+    align-items: center;
+    padding-left: 10px;
+}
+
+.accordion-collapsed {
+    height: 30px;
+}
+
+.accordion-expanded {
+    max-height: 550px;
+    overflow: scroll;
+}
+
+    .accordion-expanded::-webkit-scrollbar {
+        width: 0;
+    }
+
+.accordion-symbol {
+    justify-content: end;
+    padding: 0 10px;
+    text-align: right;
+    font-size: 30px;
+    flex-grow: 1;
+}
+
+    .accordion-symbol > img {
+        height: 15px;
+        width: auto;
+    }
+
+    .accordion-symbol img.expanded {
+        transform: rotate(180deg);
+    }

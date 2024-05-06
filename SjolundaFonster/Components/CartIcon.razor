@@ -1,0 +1,20 @@
+﻿@inject SjolundaFonster.Services.CartService CartService;
+@implements IDisposable;
+
+<!-- Varukorgsikon -->
+<button class="cart-icon" onclick="openOverview()">
+    <img src="/images/icons8-cart-32.png" />
+    @if(count != 0)
+    {
+      <div class="cart-counter">@count</div>    
+    }
+</button>
+
+<script>
+    function openOverview() {
+        document.getElementById("autoWidth").style.right = "0px";
+        document.getElementById("cart-shadow").style.height = "100vh";
+        document.getElementById("cart-shadow").style.width = "100vw";
+    }
+
+</script>

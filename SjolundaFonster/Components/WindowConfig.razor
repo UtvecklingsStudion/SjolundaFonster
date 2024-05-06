@@ -1,0 +1,29 @@
+﻿<Frame Height="@HeightInner" Width="@WidthInner" Color="@Color">
+    <Sash ModelId="ModelId" HingeLeft=true></Sash>
+    <Sash ModelId="ModelId" HingeRight=true></Sash>
+</Frame>
+
+@code {
+    [Parameter] public int Height { get; set; }
+    [Parameter] public int Width { get; set; }
+    [Parameter] public string? Color { get; set; }
+    [Parameter] public int ModelId { get; set; }
+    private int HeightInner
+    {
+        get
+        {
+            var height = Math.Max(Height, 500);
+            height = Math.Min(height, 1500);
+            return height;
+        }
+    }
+    private int WidthInner
+    {
+        get
+        {
+            var width = Math.Max(Width, 500);
+            width = Math.Min(width, 1500);
+            return width;
+        }
+    }
+}

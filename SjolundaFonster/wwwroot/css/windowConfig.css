@@ -1,0 +1,12 @@
+﻿
+.window-frame {
+    display: grid;
+    grid-template-columns: auto auto;
+    gap: 5px;
+    background-color: var(--window-color);
+    border: 1px solid black;
+    padding: 17px;
+    height: calc(var(--window-height) * 0.3px);
+    width: calc(var(--window-width) * 0.3px);
+}
+

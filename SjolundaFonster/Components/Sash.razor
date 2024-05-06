@@ -1,0 +1,15 @@
+﻿
+<div class="window-sash @GetWindowSashModel()">
+    <div class="@GetHingeTopPosition()"></div>
+    <div class="@GetHingeBottomPosition()"></div>
+    <div class="glass"></div>
+    @if (ModelId == 1 || ModelId == 2)
+    {
+        <div class="glass"></div>
+
+        @if (ModelId == 1)
+        {
+            <div class="glass"></div>
+        }
+    }
+</div>

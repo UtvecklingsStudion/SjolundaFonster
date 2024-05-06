@@ -1,0 +1,19 @@
+﻿
+  .color-card-container {
+        padding: 10px 40px;
+        margin: 0px 40px;
+    }
+
+    .color-card-container:hover {
+        border: 1px solid black;
+    }
+  
+
+    .color-card{
+        height: 60px;
+        width: 100%;
+    }
+
+    .color-card-text {
+        font-size: 12px;
+    }

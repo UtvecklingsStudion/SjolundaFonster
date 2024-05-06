@@ -1,0 +1,23 @@
+﻿.cart-icon {
+    position: fixed;
+    top: 30px;
+    right: 30px;
+    border: none;
+    background-color: white;
+}
+
+.cart-counter {
+    width: 20px;
+    height: 20px;
+    border-radius: 50%;
+    background-color: red;
+    color: white;
+    position: fixed;
+    top: 28px;
+    right: 27px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 12px;
+    line-height: 1;
+}

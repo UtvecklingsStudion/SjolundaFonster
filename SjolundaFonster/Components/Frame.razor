@@ -1,0 +1,13 @@
+﻿<div class="window-frame" style="--window-height: @Height; --window-width: @Width; --window-color: @Color">
+    @ChildContent
+</div>
+
+@code {
+
+    [Parameter]
+    public RenderFragment ChildContent { get; set; }
+    [Parameter] public int Height { get; set; }
+    [Parameter] public int Width { get; set; }
+    [Parameter] public string? Color { get; set; }
+}
+
