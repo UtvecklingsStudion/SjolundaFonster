@@ -1,0 +1,46 @@
+﻿<div class="input-container">
+    <div class="input-label">
+        @Label
+    </div>
+    <div class="input">
+        @ChildContent
+    </div>
+</div>
+
+
+
+@code {
+
+    [Parameter]
+    public string Label { get; set; }
+
+    [Parameter]
+    public RenderFragment ChildContent { get; set; }
+
+}
+
+<style>
+    .input-number-value {
+        border: none;
+        outline: none;
+        display: flex;
+        height: 45px;
+        align-items: center;
+    }
+
+
+
+        .input-number-value::-webkit-inner-spin-button,
+        .input-number-value::-webkit-outer-spin-button {
+            -webkit-appearance: none;
+            margin: 0;
+        }
+
+        .input-number-value:focus {
+            border: none;
+        }
+
+    .valid.modified:not([type=checkbox]) {
+        outline: none;
+    }
+</style>

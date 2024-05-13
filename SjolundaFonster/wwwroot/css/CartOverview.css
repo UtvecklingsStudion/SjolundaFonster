@@ -15,8 +15,16 @@
     box-shadow: 0 5px 8px rgba(0, 0, 0, .15);
 }
 
-@media (min-width: 789px) {
+.cart-overview-shadow-background.open .cart-overview {
+    right: 0;
+}
 
+.cart-overview-shadow-background.open {
+    width: 100vw;
+    height: 100vh;
+}
+
+@media (min-width: 789px) {
     .cart-overview {
         width: 500px;
     }

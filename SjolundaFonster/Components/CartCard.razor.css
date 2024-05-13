@@ -3,6 +3,7 @@
     height: 150px;
     padding-top: 10px;
     border-bottom: 1px solid #ccc;
+    font-family: "futura-pt", Futura, "Lato", "Trebuchet MS", sans-serif;
 }
 
 .cart-card-icon {
@@ -27,6 +28,7 @@
 
 .cart-card-header {
     height: 15%;
+    font-weight: 1000;
 }
 
 .cart-card-text1 {

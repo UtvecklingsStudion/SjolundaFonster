@@ -22,7 +22,10 @@
       
         <div>
             <div class="layout-container-select">
-                <EditForm Model="@Window" >
+                <EditForm Model="@Window">
+                    <h2>Sidohängda fönster 2-luft</h2>
+                    <p>Tillverkat av högkvalitativ långsamväxande furu.</p>
+        
                     <DataAnnotationsValidator></DataAnnotationsValidator>
                     <Accordion Label="Kulör" Header="@Window.Color.Name">
                         @foreach (var color in Colors)
@@ -37,13 +40,19 @@
                         }
                     </Accordion>
 
-                    <div>
-                        <InputNumber @bind-Value="Window.Width"></InputNumber>
+                    <div class="input-measure">
+                        <InputMeasure Label="Bredd">
+                            <InputNumber @bind-Value="Window.Width" class="input-number-value"></InputNumber>
+                        </InputMeasure>
                         <ValidationMessage For="@(() => Window.Width)" />
-                        <InputNumber @bind-Value="Window.Height"></InputNumber>
-                        <ValidationMessage For="@(() => Window.Height)"> </ValidationMessage>
+                        <InputMeasure Label="Höjd">
+                            <InputNumber @bind-Value="Window.Height" class="input-number-value"></InputNumber>
+                        </InputMeasure>
+                        <ValidationMessage For="@(() => Window.Height)"> </ValidationMessage> 
                     </div>
-                    <p>pris: @Window.UnitPrice</p>
+                    <div class="unit-price">
+                        <p>@Window.UnitPrice,00 kr</p>
+                    </div>
                     <div class="add-to-cart-container">
                         <QuantitySelect Value="Window.Quantity" ValueChanged="UpdateQuantity"></QuantitySelect>
                         <button class="button-add-to-cart" onclick=@AddToCart>Lägg i varukorg</button>
