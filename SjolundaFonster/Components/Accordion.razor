@@ -12,10 +12,13 @@
                      class="@((IsExpanded ? "expanded" : ""))" />
             </div>
         </div>
-        <div class="accordion-content @(IsExpanded ? "expanded" : "")">
-            <div>
-                @ChildContent
+        @if (IsExpanded)
+        {
+            <div class="accordion-content">
+                <div>
+                    @ChildContent
+                </div>
             </div>
-        </div>
+        }
     </div>
 </div>

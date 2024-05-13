@@ -22,10 +22,6 @@
 }
 
 .accordion-content {
-   display: none;
-}
-
-.accordion-content.expanded {
     display: block;
     max-height: 550px;
     overflow: scroll;
