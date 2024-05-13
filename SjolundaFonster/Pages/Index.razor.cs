@@ -92,5 +92,15 @@ namespace SjolundaFonster.Pages
         {
             Window.Quantity = newValue;
         }
+
+        private void UpdateWidth(int newValue)
+        {
+            Window.Width = newValue;
+        }
+       
+        private void UpdateHeight(int newValue)
+        {
+            Window.Height = newValue;
+        }
     }
 }

@@ -55,13 +55,6 @@
 }
 
 
-
-.select {
-    border: solid black 0.5px;
-    height: 60px;
-    width: 800px;
-}
-
 .add-to-cart-container {
     display: flex;
 }
@@ -81,3 +74,7 @@
     .button-add-to-cart:hover {
         background-color: #DC4405;
     }
+
+.unit-price {
+    text-align: end;
+}

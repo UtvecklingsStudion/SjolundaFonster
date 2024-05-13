@@ -5,11 +5,11 @@
 @inject SjolundaFonster.Services.CartService CartService
 @implements IDisposable;
 
-     <div id="cart-shadow" class="cart-overview-shadow-background">
+     <div id="cart-shadow" class="cart-overview-shadow-background @(Open ? "open" : "") ">
         <div id="autoWidth" class="cart-overview">
             <div class="overview-header">
                 <span class="overview-header-text">Varukorg</span>
-                <button class="cart-closing-button" onclick="closeOverview()">x</button>
+            <button class="cart-closing-button" @onclick="@HandleClickOnCloseButton">x</button>
             </div>
 
             <div class="cart-content">
@@ -51,18 +51,28 @@
 
      </style>
 
-     @code {
+@code {
     private List<Window>? CartItems;
     private int Sum { get; set; }
 
     [Parameter]
-    public EventCallback OnClick { get; set; }
+    public bool Open { get; set; }
+
+    [Parameter]
+    public EventCallback<bool> OpenChanged { get; set; }
+
 
     protected override void OnInitialized()
     {
         CartItems = CartService.GetCartItems();
         UpdateCart();
         CartService.OnChange += UpdateCart;
+    }
+
+    private void HandleClickOnCloseButton()
+    {
+        Open = false;
+        OpenChanged.InvokeAsync(Open);
     }
 
     private void UpdateCart()
@@ -77,11 +87,4 @@
         CartService.OnChange -= UpdateCart;
     }
     }
-     
-     <script>
-    function closeOverview() {
-        document.getElementById("autoWidth").style.right = "-500px";
-        document.getElementById("cart-shadow").style.height = "0vh";
-        document.getElementById("cart-shadow").style.width = "0vw";
-    }
-     </script>
+ 

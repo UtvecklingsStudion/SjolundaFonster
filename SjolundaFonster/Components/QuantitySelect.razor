@@ -27,9 +27,14 @@
         {
             Value--;
             await ValueChanged.InvokeAsync(Value);
-            
+
         }
     }
+    private async Task UpdateAdditionalValidationAttributes()
+    {
+        await ValueChanged.InvokeAsync(Value);
+    }
+
 
 }
 
