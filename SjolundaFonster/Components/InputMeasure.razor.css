@@ -1,0 +1,35 @@
+﻿
+.input-container {
+    padding-bottom: 20px;
+}
+.input {
+    display: block;
+    height: 45px;
+    border: 1px solid black;
+    display: flex;
+    height: 100%;
+    align-items: center;
+    padding-left: 10px;
+}
+
+.input-label {
+    margin-bottom: 0;
+    font-size: 10px;
+}
+
+
+
+
+    .input::-webkit-inner-spin-button,
+    .input::-webkit-outer-spin-button {
+        -webkit-appearance: none;
+        margin: 0;
+    }
+
+    .input:focus {
+        border: none;
+    }
+
+.valid.modified:not([type=checkbox]) {
+    outline: none;
+}
