@@ -1,5 +1,6 @@
-﻿
+
 .accordion {
+
     display: block;
     padding-bottom: 20px;
 }
@@ -17,21 +18,22 @@
     display: flex;
     height: 100%;
     align-items: center;
-    padding-left: 10px;
+    padding-left: 10px;  
 }
 
-.accordion-collapsed {
-    height: 30px;
+.accordion-content {
+   display: none;
 }
 
-.accordion-expanded {
+.accordion-content.expanded {
+    display: block;
     max-height: 550px;
     overflow: scroll;
 }
 
-    .accordion-expanded::-webkit-scrollbar {
-        width: 0;
-    }
+.accordion-content::-webkit-scrollbar {
+    width: 0;
+}
 
 .accordion-symbol {
     justify-content: end;
