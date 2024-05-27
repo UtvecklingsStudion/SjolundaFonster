@@ -3,7 +3,6 @@
 @using SjolundaFonster.Data.Models
 @using SjolundaFonster.Services
 @using Microsoft.EntityFrameworkCore
-@inject IDbContextFactory<SjolundaFonsterDbContext> ContextFactory
 @inject SjolundaFonster.Services.CartService CartService
 <head>
     <link rel="stylesheet" href="index.razor.css" />
@@ -68,8 +67,9 @@
 }
 @code{
     private Window Window { get; set; } = new();
-    private List<Color>? Colors { get; set; }
-    private List<Model>? Models { get; set; }
+    public Model Model { get; set; }
+    public List<Color>? Colors { get; set; }
+    public List<Model>? Models { get; set; }
     private string? MeasureHeader { get; set; }
 
 
@@ -77,33 +77,48 @@
 
     protected override async Task OnInitializedAsync()
     {
-        using var context = ContextFactory.CreateDbContext();
-        Colors = await context.ProductColors.ToListAsync();
-        Models = await context.ProductModels.ToListAsync();
+
         Window = new Window();
-        if (Colors is not null)
-        {
-            var firstColor = Colors.FirstOrDefault();
-            if (firstColor != null)
-            {
-                Window.Color = firstColor;
-            }
+        Model = new Model();
+        Colors = new List<Color>();
+        Models = new List<Model>(); 
 
-        }
-        if (Models is not null)
-        {
-            var firstModel = Models.FirstOrDefault();
-            if (firstModel != null)
-            {
-                Window.Model = firstModel;
-            }
-        }
+        Colors.Add(new Color { Id = 1, Name = "Stockholmsvit", Code = "#F2F2EB", NCS = "0500-N" });
+        Colors.Add(new Color { Id = 6, Name = "Öjablå", Code = "#647C80", NCS = "0500-N" });
+        Colors.Add(new Color { Id = 2, Name = "Köpenhamngrön", Code = "#4F7D47", NCS = "0500-N" });
+        Colors.Add(new Color { Id = 3, Name = "Sandgul", Code = "#EAC67A", NCS = "0500-N" });
+        Colors.Add(new Color { Id = 4, Name = "Varmgrå", Code = "#B4BCAD", NCS = "0500-N" });
 
+
+        Models.Add(new Model
+            {
+                Id = 1,
+                Name = "Anno 1900",
+                Image = "anno_1900",
+                Description = "Anno 1900 är en fönstermodell med två spröjs i varje fönsterbåge. Vanlint förekommande i svensk arkitektur under byggtiden kring 1900."
+            });
+        Models.Add(new Model
+            {
+                Id = 2,
+                Name = "Anno 1920",
+                Image = "anno_1920",
+                Description = "Anno 1920 är en fönstermodell med en spröjs i varje fönsterbåge. Vanlint förekommande i svensk arkitektur under byggtiden kring 1920."
+            });
+        Models.Add(new Model
+            {
+                Id = 3,
+                Name = "Anno 1930",
+                Image = "anno_1930",
+                Description = "Anno 1920 är en fönstermodell utan spröjs. Vanlint förekommande i svensk arkitektur under byggtiden kring 1930."
+            });
         Window.Height = 1000;
         Window.Width = 800;
         Window.Quantity = 1;
+        Window.Model = Models.FirstOrDefault(m => m.Id == 1); 
+        Window.Color = Colors.FirstOrDefault(c => c.Id == 1); 
         Window.UnitPrice = priceCalculator.CalculateUnitPrice(Window);
     }
+    
     public async Task AddToCart()
     {
         CartService.AddWindowToCart(Window);
