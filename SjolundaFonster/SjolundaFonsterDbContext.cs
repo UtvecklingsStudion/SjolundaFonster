@@ -26,9 +26,9 @@ namespace SjolundaFonster
                 );
 
             modelBuilder.Entity<Model>().HasData(
-               new Model { Id = 1, Name = "Anno 1900", Image = "anno_1900" },
-               new Model { Id = 2, Name = "Anno 1920", Image = "anno_1920" },
-               new Model { Id = 3, Name = "Anno 1930", Image = "anno_1930" }
+               new Model { Id = 1, Name = "Anno 1900", Image = "anno_1900",  Description = "Anno 1900 är en fönstermodell med två spröjs i varje fönsterbåge. Vanlint förekommande i svensk arkitektur under byggtiden kring 1900." },
+               new Model { Id = 2, Name = "Anno 1920", Image = "anno_1920", Description ="Anno 1920 är en fönstermodell med en spröjs i varje fönsterbåge. Vanlint förekommande i svensk arkitektur under byggtiden kring 1920." },
+               new Model { Id = 3, Name = "Anno 1930", Image = "anno_1930", Description = "Anno 1920 är en fönstermodell utan spröjs. Vanlint förekommande i svensk arkitektur under byggtiden kring 1930." }
                );
         }
     }

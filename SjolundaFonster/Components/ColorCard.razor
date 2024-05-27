@@ -8,3 +8,12 @@
         @CardColor.Name
     </div>
 </div>
+
+@code{
+
+    [Parameter]
+    public Color? CardColor { get; set; }
+
+    [Parameter]
+    public EventCallback<MouseEventArgs> OnClickCallback { get; set; }
+}

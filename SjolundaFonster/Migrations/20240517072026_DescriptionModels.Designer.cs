@@ -3,6 +3,7 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using SjolundaFonster;
 
@@ -11,9 +12,11 @@ using SjolundaFonster;
 namespace SjolundaFonster.Migrations
 {
     [DbContext(typeof(SjolundaFonsterDbContext))]
-    partial class SjolundaFonsterDbContextModelSnapshot : ModelSnapshot
+    [Migration("20240517072026_DescriptionModels")]
+    partial class DescriptionModels
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -136,10 +139,6 @@ namespace SjolundaFonster.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
 
-                    b.Property<string>("Description")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
                     b.Property<string>("Image")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
@@ -156,21 +155,18 @@ namespace SjolundaFonster.Migrations
                         new
                         {
                             Id = 1,
-                            Description = "Anno 1900 är en fönstermodell med två spröjs i varje fönsterbåge. Vanlint förekommande i svensk arkitektur under byggtiden kring 1900.",
                             Image = "anno_1900",
                             Name = "Anno 1900"
                         },
                         new
                         {
                             Id = 2,
-                            Description = "Anno 1920 är en fönstermodell med en spröjs i varje fönsterbåge. Vanlint förekommande i svensk arkitektur under byggtiden kring 1920.",
                             Image = "anno_1920",
                             Name = "Anno 1920"
                         },
                         new
                         {
                             Id = 3,
-                            Description = "Anno 1920 är en fönstermodell utan spröjs. Vanlint förekommande i svensk arkitektur under byggtiden kring 1930.",
                             Image = "anno_1930",
                             Name = "Anno 1930"
                         });

@@ -5,8 +5,8 @@
 @inject SjolundaFonster.Services.CartService CartService
 @implements IDisposable;
 
-     <div id="cart-shadow" class="cart-overview-shadow-background @(Open ? "open" : "") ">
-        <div id="autoWidth" class="cart-overview">
+     <div class="cart-overview-shadow-background @(Open ? "open" : "") ">
+        <div class="cart-overview">
             <div class="overview-header">
                 <span class="overview-header-text">Varukorg</span>
             <button class="cart-closing-button" @onclick="@HandleClickOnCloseButton">x</button>
@@ -29,31 +29,26 @@
                     }
                 }
             </div>
-        @if(Sum != 0)
-        {
+            @if(Sum != 0)
+            {
             
-            <div class="cart-footer">
-                <div class="cart-overview-sum">
-                    <span class="cart-overview-sum-title">Summa varor:</span>
-                    <div class="cart-overview-sum-value">@Sum kr</div>
-                </div>
+                <div class="cart-footer">
+                    <div class="cart-overview-sum">
+                        <span class="cart-overview-sum-title">Summa varor:</span>
+                        <div class="cart-overview-sum-value">@Sum kr</div>
+                    </div>
           
-                <div>
-                    <button class="cart-overview-button">Till kassan</button>
-                </div>
+                    <div>
+                        <button class="cart-overview-button">Till kassan</button>
+                    </div>
                
-            </div>
-        }
+                </div>
+            }
         </div>
      </div>
  
-     <style>
-
-     </style>
 
 @code {
-    private List<Window>? CartItems;
-    private int Sum { get; set; }
 
     [Parameter]
     public bool Open { get; set; }
@@ -61,6 +56,8 @@
     [Parameter]
     public EventCallback<bool> OpenChanged { get; set; }
 
+    private List<Window>? CartItems;
+    private int Sum { get; set; }
 
     protected override void OnInitialized()
     {
@@ -72,7 +69,6 @@
     private void HandleClickOnCloseButton()
     {
         Open = false;
-        OpenChanged.InvokeAsync(Open);
     }
 
     private void UpdateCart()

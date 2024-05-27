@@ -55,7 +55,9 @@
                     </div>
                     <div class="add-to-cart-container">
                         <QuantitySelect Value="Window.Quantity" ValueChanged="UpdateQuantity"></QuantitySelect>
-                        <button class="button-add-to-cart" onclick=@AddToCart>Lägg i varukorg</button>
+                        <button class="button-add-to-cart" onclick="@(() => AddToCart())">
+                            Lägg i varukorg
+                        </button>
                     </div>
                 </EditForm>
             </div>
@@ -63,4 +65,115 @@
     </div>
 
 
+}
+@code{
+    private Window Window { get; set; } = new();
+    private List<Color>? Colors { get; set; }
+    private List<Model>? Models { get; set; }
+    private string? MeasureHeader { get; set; }
+
+
+    public PriceCalculatorService priceCalculator = new();
+
+    protected override async Task OnInitializedAsync()
+    {
+        using var context = ContextFactory.CreateDbContext();
+        Colors = await context.ProductColors.ToListAsync();
+        Models = await context.ProductModels.ToListAsync();
+        Window = new Window();
+        if (Colors is not null)
+        {
+            var firstColor = Colors.FirstOrDefault();
+            if (firstColor != null)
+            {
+                Window.Color = firstColor;
+            }
+
+        }
+        if (Models is not null)
+        {
+            var firstModel = Models.FirstOrDefault();
+            if (firstModel != null)
+            {
+                Window.Model = firstModel;
+            }
+        }
+
+        Window.Height = 1000;
+        Window.Width = 800;
+        Window.Quantity = 1;
+        Window.UnitPrice = priceCalculator.CalculateUnitPrice(Window);
+    }
+    public async Task AddToCart()
+    {
+        CartService.AddWindowToCart(Window);
+        await Task.Delay(1000);
+        LoadNewWindow();
+
+    }
+
+    private void LoadNewWindow()
+    {
+        Window = new Window();
+        if (Colors is not null)
+        {
+            var firstColor = Colors.FirstOrDefault();
+            if (firstColor != null)
+            {
+                Window.Color = firstColor;
+            }
+
+        }
+        if (Models is not null)
+        {
+            var firstModel = Models.FirstOrDefault();
+            if (firstModel != null)
+            {
+                Window.Model = firstModel;
+            }
+        }
+
+        Window.Height = 1000;
+        Window.Width = 800;
+        Window.Quantity = 1;
+        Window.UnitPrice = priceCalculator.CalculateUnitPrice(Window);
+    }
+
+
+
+    public void HandleModelUpdate(Model model)
+    {
+
+        Window.Model = model;
+        Window.UnitPrice = priceCalculator.CalculateUnitPrice(Window);
+
+    }
+
+    public void HandleColorUpdate(Color color)
+    {
+        Window.Color = color;
+        Window.UnitPrice = priceCalculator.CalculateUnitPrice(Window);
+
+    }
+
+
+    public void GetMeasureHeader()
+    {
+        MeasureHeader = Window.Width + " x " + Window.Height;
+
+    }
+    private void UpdateQuantity(int newValue)
+    {
+        Window.Quantity = newValue;
+    }
+
+    private void UpdateWidth(int newValue)
+    {
+        Window.Width = newValue;
+    }
+
+    private void UpdateHeight(int newValue)
+    {
+        Window.Height = newValue;
+    }
 }

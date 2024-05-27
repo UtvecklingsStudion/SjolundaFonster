@@ -6,6 +6,17 @@
     position: relative;
 }
 
+.window-sash-model1 {
+    grid-template-rows: auto auto auto;
+}
+
+.window-sash-model2 {
+    grid-template-rows: auto 67%;
+}
+
+.window-sash-model3 {
+    grid-template-rows: auto;
+}
 .sash-hinge-left-top {
     position: absolute;
     top: 30px;
@@ -58,17 +69,7 @@
     background-color: gray;
 }
 
-.window-sash-model1 {
-    grid-template-rows: auto auto auto;
-}
 
-.window-sash-model2 {
-    grid-template-rows: auto 67%;
-}
-
-.window-sash-model3 {
-    grid-template-rows: auto;
-}
 
 .glass {
     background-color: white;
