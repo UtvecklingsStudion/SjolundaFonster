@@ -10,9 +10,6 @@ builder.Services.AddRazorPages();
 builder.Services.AddServerSideBlazor();
 builder.Services.AddSingleton<CartService>();
 
-builder.Services.AddDbContextFactory<SjolundaFonsterDbContext>(
-    opt => opt.UseSqlServer(
-        builder.Configuration.GetConnectionString("SjolundaFonsterDb")));
 
 var app = builder.Build();
 
