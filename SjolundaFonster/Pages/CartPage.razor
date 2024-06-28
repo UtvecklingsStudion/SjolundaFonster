@@ -2,7 +2,7 @@
 @using SjolundaFonster.Data.Models
 @using SjolundaFonster.Services
 @using Microsoft.EntityFrameworkCore
-
+@inject IDbContextFactory<SjolundaFonsterDbContext> ContextFactory
 @inject SjolundaFonster.Services.CartService Cartservice
 <head>
     <link rel="stylesheet" href="cart.razor.css" />

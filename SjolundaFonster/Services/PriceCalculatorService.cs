@@ -6,7 +6,6 @@ namespace SjolundaFonster.Services
     {
         public int CalculateUnitPrice(Window window)
         {
-         
             decimal area = window.Width * window.Height;
             decimal UnitPrice = area * 6500 /1000000;
             if (window.Model.Id == 2)
